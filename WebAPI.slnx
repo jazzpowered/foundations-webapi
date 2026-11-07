@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FoundationsBusiness/FoundationsBusiness.csproj" Id="5812a632-fcc2-4e6e-a31f-0c3f62ee906e" />
+  <Project Path="WebAPI/WebAPI.csproj" />
+</Solution>
