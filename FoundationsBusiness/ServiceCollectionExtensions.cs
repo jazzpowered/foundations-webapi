@@ -15,6 +15,8 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton<IDbConnectionFactory>(new SqlConnectionFactory(connectionString));
         services.AddScoped<UserRepository>();
+        services.AddScoped<ChurchRepository>();
+        services.AddScoped<CountryRepository>();
         services.AddScoped<UserService>();
 
         return services;

@@ -2,7 +2,7 @@ namespace FoundationsBusiness.Models;
 
 public class Church
 {
-    public required int Id { get; set; } 
+    public required int Id { get; set; }
     public required string Name { get; set; }
     public required int CountryId { get; set; }
     public required string Area { get; set; }
