@@ -7,4 +7,5 @@ internal class ChurchRepository(IDbConnectionFactory connectionFactory)
     : Repository<Church>(connectionFactory, "dbo.Churches", "Id", "Name", "CountryId", "Area"),
         IChurchRepository
 {
+    private readonly IDbConnectionFactory _connectionFactory = connectionFactory;
 }

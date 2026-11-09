@@ -6,5 +6,7 @@ namespace FoundationsBusiness.Repositories.Implementations;
 
 public class SqlConnectionFactory(string connectionString) : IDbConnectionFactory
 {
-    public IDbConnection CreateConnection() => new SqlConnection(connectionString);
+    private readonly string _connectionString = connectionString;
+
+    public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
 }

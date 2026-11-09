@@ -7,4 +7,5 @@ internal class CountryRepository(IDbConnectionFactory connectionFactory)
     : Repository<Country>(connectionFactory, "dbo.Countries", "Id", "Name"),
         ICountryRepository
 {
+    private readonly IDbConnectionFactory _connectionFactory = connectionFactory;
 }

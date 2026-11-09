@@ -7,4 +7,5 @@ namespace FoundationsBusiness.Services.Implementations;
 internal class ChurchService(IChurchRepository churchRepository)
     : Service<Church>(churchRepository), IChurchService
 {
+    private readonly IChurchRepository _churchRepository = churchRepository;
 }

@@ -7,4 +7,5 @@ namespace FoundationsBusiness.Services.Implementations;
 internal class CountryService(ICountryRepository countryRepository)
     : Service<Country>(countryRepository), ICountryService
 {
+    private readonly ICountryRepository _countryRepository = countryRepository;
 }

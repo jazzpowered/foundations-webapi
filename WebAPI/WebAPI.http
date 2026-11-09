@@ -1,6 +1,112 @@
 @WebAPI_HostAddress = http://localhost:5168
 
-GET {{WebAPI_HostAddress}}/weatherforecast/
+### Get all countries
+GET {{WebAPI_HostAddress}}/api/countries
 Accept: application/json
 
-###
+### Get a country
+GET {{WebAPI_HostAddress}}/api/countries/1
+Accept: application/json
+
+### Get a missing country
+GET {{WebAPI_HostAddress}}/api/countries/999999
+Accept: application/json
+
+### Create a country
+POST {{WebAPI_HostAddress}}/api/countries
+Content-Type: application/json
+
+{
+  "name": "Example Country"
+}
+
+### Replace a country
+PUT {{WebAPI_HostAddress}}/api/countries/1
+Content-Type: application/json
+
+{
+  "name": "Updated Country"
+}
+
+### Delete a country
+DELETE {{WebAPI_HostAddress}}/api/countries/1
+
+### Get all churches
+GET {{WebAPI_HostAddress}}/api/churches
+Accept: application/json
+
+### Get a church
+GET {{WebAPI_HostAddress}}/api/churches/1
+Accept: application/json
+
+### Get a missing church
+GET {{WebAPI_HostAddress}}/api/churches/999999
+Accept: application/json
+
+### Create a church
+POST {{WebAPI_HostAddress}}/api/churches
+Content-Type: application/json
+
+{
+  "name": "Example Church",
+  "countryId": 1,
+  "area": "Central"
+}
+
+### Replace a church
+PUT {{WebAPI_HostAddress}}/api/churches/1
+Content-Type: application/json
+
+{
+  "name": "Updated Church",
+  "countryId": 1,
+  "area": "North"
+}
+
+### Delete a church
+DELETE {{WebAPI_HostAddress}}/api/churches/1
+
+### Get all users
+GET {{WebAPI_HostAddress}}/api/users
+Accept: application/json
+
+### Get a user
+GET {{WebAPI_HostAddress}}/api/users/1
+Accept: application/json
+
+### Get a missing user
+GET {{WebAPI_HostAddress}}/api/users/999999
+Accept: application/json
+
+### Create a user
+POST {{WebAPI_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "churchId": 1,
+  "countryId": 1,
+  "firstName": "Alex",
+  "lastName": "Example",
+  "email": "alex@example.com",
+  "gender": "Unspecified",
+  "area": "Central",
+  "zipCode": "12345"
+}
+
+### Replace a user
+PUT {{WebAPI_HostAddress}}/api/users/1
+Content-Type: application/json
+
+{
+  "churchId": 1,
+  "countryId": 1,
+  "firstName": "Alex",
+  "lastName": "Updated",
+  "email": "alex.updated@example.com",
+  "gender": "Unspecified",
+  "area": "North",
+  "zipCode": "12345"
+}
+
+### Delete a user
+DELETE {{WebAPI_HostAddress}}/api/users/1

@@ -18,4 +18,5 @@ internal class UserRepository(IDbConnectionFactory connectionFactory)
         "ZipCode"),
         IUserRepository
 {
+    private readonly IDbConnectionFactory _connectionFactory = connectionFactory;
 }

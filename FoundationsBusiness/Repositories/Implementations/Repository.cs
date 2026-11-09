@@ -10,49 +10,60 @@ internal abstract class Repository<T>(
 {
     private const string IdColumn = "Id";
 
+    private readonly IDbConnectionFactory _connectionFactory = connectionFactory;
     private readonly SqlMetadata _metadata = CreateMetadata(tableName, columns);
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        using var connection = connectionFactory.CreateConnection();
+        using var connection = _connectionFactory.CreateConnection();
         return await connection.QueryAsync<T>(
-            $"SELECT {_metadata.SelectColumns} FROM {_metadata.TableName}");
+            new CommandDefinition(
+                $"SELECT {_metadata.SelectColumns} FROM {_metadata.TableName}",
+                cancellationToken: cancellationToken));
     }
 
-    public async Task<T?> GetByIdAsync(int id)
+    public async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        using var connection = connectionFactory.CreateConnection();
+        using var connection = _connectionFactory.CreateConnection();
         return await connection.QuerySingleOrDefaultAsync<T>(
-            $"SELECT {_metadata.SelectColumns} FROM {_metadata.TableName} WHERE [{IdColumn}] = @Id",
-            new { Id = id });
+            new CommandDefinition(
+                $"SELECT {_metadata.SelectColumns} FROM {_metadata.TableName} WHERE [{IdColumn}] = @Id",
+                new { Id = id },
+                cancellationToken: cancellationToken));
     }
 
-    public async Task<int> AddAsync(T entity)
+    public async Task<int> AddAsync(T entity, CancellationToken cancellationToken = default)
     {
         var columns = string.Join(", ", _metadata.WriteColumns.Select(QuoteIdentifier));
         var parameters = string.Join(", ", _metadata.WriteColumns.Select(column => $"@{column}"));
-        using var connection = connectionFactory.CreateConnection();
+        using var connection = _connectionFactory.CreateConnection();
         return await connection.ExecuteScalarAsync<int>(
-            $"INSERT INTO {_metadata.TableName} ({columns}) OUTPUT INSERTED.[{IdColumn}] VALUES ({parameters})",
-            entity);
+            new CommandDefinition(
+                $"INSERT INTO {_metadata.TableName} ({columns}) OUTPUT INSERTED.[{IdColumn}] VALUES ({parameters})",
+                entity,
+                cancellationToken: cancellationToken));
     }
 
-    public async Task<bool> UpdateAsync(T entity)
+    public async Task<bool> UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
         var assignments = string.Join(", ", _metadata.WriteColumns.Select(
             column => $"{QuoteIdentifier(column)} = @{column}"));
-        using var connection = connectionFactory.CreateConnection();
+        using var connection = _connectionFactory.CreateConnection();
         return await connection.ExecuteAsync(
-            $"UPDATE {_metadata.TableName} SET {assignments} WHERE [{IdColumn}] = @Id",
-            entity) > 0;
+            new CommandDefinition(
+                $"UPDATE {_metadata.TableName} SET {assignments} WHERE [{IdColumn}] = @Id",
+                entity,
+                cancellationToken: cancellationToken)) > 0;
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
-        using var connection = connectionFactory.CreateConnection();
+        using var connection = _connectionFactory.CreateConnection();
         return await connection.ExecuteAsync(
-            $"DELETE FROM {_metadata.TableName} WHERE [{IdColumn}] = @Id",
-            new { Id = id }) > 0;
+            new CommandDefinition(
+                $"DELETE FROM {_metadata.TableName} WHERE [{IdColumn}] = @Id",
+                new { Id = id },
+                cancellationToken: cancellationToken)) > 0;
     }
 
     private static SqlMetadata CreateMetadata(string tableName, string[] columns)
