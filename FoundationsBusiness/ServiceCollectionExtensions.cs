@@ -1,5 +1,8 @@
-using FoundationsBusiness.Repositories;
-using FoundationsBusiness.Services;
+using FoundationsBusiness.Models;
+using FoundationsBusiness.Repositories.Implementations;
+using FoundationsBusiness.Repositories.Interfaces;
+using FoundationsBusiness.Services.Implementations;
+using FoundationsBusiness.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +20,15 @@ public static class ServiceCollectionExtensions
         services.AddScoped<UserRepository>();
         services.AddScoped<ChurchRepository>();
         services.AddScoped<CountryRepository>();
-        services.AddScoped<UserService>();
+        services.AddScoped<IRepository<User>>(provider => provider.GetRequiredService<UserRepository>());
+        services.AddScoped<IRepository<Church>>(provider => provider.GetRequiredService<ChurchRepository>());
+        services.AddScoped<IRepository<Country>>(provider => provider.GetRequiredService<CountryRepository>());
+        services.AddScoped<IUserRepository>(provider => provider.GetRequiredService<UserRepository>());
+        services.AddScoped<IChurchRepository>(provider => provider.GetRequiredService<ChurchRepository>());
+        services.AddScoped<ICountryRepository>(provider => provider.GetRequiredService<CountryRepository>());
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IChurchService, ChurchService>();
+        services.AddScoped<ICountryService, CountryService>();
 
         return services;
     }
