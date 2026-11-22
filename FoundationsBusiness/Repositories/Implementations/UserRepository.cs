@@ -10,6 +10,7 @@ internal class UserRepository(IDbConnectionFactory connectionFactory)
         "Id",
         "ChurchId",
         "CountryId",
+        "RoleId",
         "FirstName",
         "LastName",
         "Email",

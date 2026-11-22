@@ -11,6 +11,9 @@ public sealed record CreateUserRequest
     [Range(1, int.MaxValue)]
     public required int CountryId { get; init; }
 
+    [Range(1, int.MaxValue)]
+    public required int RoleId { get; init; }
+
     [Required]
     public required string FirstName { get; init; }
 
@@ -37,6 +40,9 @@ public sealed record UpdateUserRequest
     [Range(1, int.MaxValue)]
     public required int CountryId { get; init; }
 
+    [Range(1, int.MaxValue)]
+    public required int RoleId { get; init; }
+
     [Required]
     public required string FirstName { get; init; }
 
@@ -59,6 +65,7 @@ public sealed record UserResponse(
     int Id,
     int ChurchId,
     int CountryId,
+    int RoleId,
     string FirstName,
     string LastName,
     string Email,

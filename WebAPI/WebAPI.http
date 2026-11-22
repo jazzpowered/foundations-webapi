@@ -85,6 +85,7 @@ Content-Type: application/json
 {
   "churchId": 1,
   "countryId": 1,
+  "roleId": 1,
   "firstName": "Alex",
   "lastName": "Example",
   "email": "alex@example.com",
@@ -100,6 +101,7 @@ Content-Type: application/json
 {
   "churchId": 1,
   "countryId": 1,
+  "roleId": 1,
   "firstName": "Alex",
   "lastName": "Updated",
   "email": "alex.updated@example.com",
@@ -110,3 +112,71 @@ Content-Type: application/json
 
 ### Delete a user
 DELETE {{WebAPI_HostAddress}}/api/users/1
+
+### Get all languages
+GET {{WebAPI_HostAddress}}/api/languages
+Accept: application/json
+
+### Get a language
+GET {{WebAPI_HostAddress}}/api/languages/1
+Accept: application/json
+
+### Get a missing language
+GET {{WebAPI_HostAddress}}/api/languages/999999
+Accept: application/json
+
+### Create a language
+POST {{WebAPI_HostAddress}}/api/languages
+Content-Type: application/json
+
+{
+  "name": "English"
+}
+
+### Replace a language
+PUT {{WebAPI_HostAddress}}/api/languages/1
+Content-Type: application/json
+
+{
+  "name": "Spanish"
+}
+
+### Delete a language
+DELETE {{WebAPI_HostAddress}}/api/languages/1
+
+### Get all week sessions
+GET {{WebAPI_HostAddress}}/api/week-sessions
+Accept: application/json
+
+### Get a week session
+GET {{WebAPI_HostAddress}}/api/week-sessions/1
+Accept: application/json
+
+### Get a missing week session
+GET {{WebAPI_HostAddress}}/api/week-sessions/999999
+Accept: application/json
+
+### Create a week session
+POST {{WebAPI_HostAddress}}/api/week-sessions
+Content-Type: application/json
+
+{
+  "languageId": 1,
+  "week": 1,
+  "active": true,
+  "content": "Week one content"
+}
+
+### Replace a week session
+PUT {{WebAPI_HostAddress}}/api/week-sessions/1
+Content-Type: application/json
+
+{
+  "languageId": 1,
+  "week": 1,
+  "active": false,
+  "content": "Updated week one content"
+}
+
+### Delete a week session
+DELETE {{WebAPI_HostAddress}}/api/week-sessions/1
