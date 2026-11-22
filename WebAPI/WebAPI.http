@@ -180,3 +180,67 @@ Content-Type: application/json
 
 ### Delete a week session
 DELETE {{WebAPI_HostAddress}}/api/week-sessions/1
+
+### Get all semesters
+GET {{WebAPI_HostAddress}}/api/semesters
+
+### Get a semester
+GET {{WebAPI_HostAddress}}/api/semesters/1
+
+### Get a missing semester
+GET {{WebAPI_HostAddress}}/api/semesters/999999
+
+### Create a semester
+POST {{WebAPI_HostAddress}}/api/semesters
+Content-Type: application/json
+
+{
+  "name": "Fall"
+}
+
+### Replace a semester
+PUT {{WebAPI_HostAddress}}/api/semesters/1
+Content-Type: application/json
+
+{
+  "name": "Spring"
+}
+
+### Delete a semester
+DELETE {{WebAPI_HostAddress}}/api/semesters/1
+
+### Get all seasons
+GET {{WebAPI_HostAddress}}/api/seasons
+
+### Get a season
+GET {{WebAPI_HostAddress}}/api/seasons/1
+
+### Get a missing season
+GET {{WebAPI_HostAddress}}/api/seasons/999999
+
+### Create a season (requires existing language, church, and semester IDs)
+POST {{WebAPI_HostAddress}}/api/seasons
+Content-Type: application/json
+
+{
+  "year": 2026,
+  "languageId": 1,
+  "churchId": 1,
+  "semesterId": 1,
+  "active": true
+}
+
+### Replace a season
+PUT {{WebAPI_HostAddress}}/api/seasons/1
+Content-Type: application/json
+
+{
+  "year": 2026,
+  "languageId": 1,
+  "churchId": 1,
+  "semesterId": 1,
+  "active": false
+}
+
+### Delete a season
+DELETE {{WebAPI_HostAddress}}/api/seasons/1

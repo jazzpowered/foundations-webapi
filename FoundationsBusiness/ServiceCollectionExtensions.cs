@@ -23,23 +23,31 @@ public static class ServiceCollectionExtensions
         services.AddScoped<RoleRepository>();
         services.AddScoped<WeekSessionRepository>();
         services.AddScoped<LanguageRepository>();
+        services.AddScoped<SemesterRepository>();
+        services.AddScoped<SeasonRepository>();
         services.AddScoped<IRepository<User>>(provider => provider.GetRequiredService<UserRepository>());
         services.AddScoped<IRepository<Church>>(provider => provider.GetRequiredService<ChurchRepository>());
         services.AddScoped<IRepository<Country>>(provider => provider.GetRequiredService<CountryRepository>());
         services.AddScoped<IRepository<Role>>(provider => provider.GetRequiredService<RoleRepository>());
         services.AddScoped<IRepository<WeekSession>>(provider => provider.GetRequiredService<WeekSessionRepository>());
         services.AddScoped<IRepository<Language>>(provider => provider.GetRequiredService<LanguageRepository>());
+        services.AddScoped<IRepository<Semester>>(provider => provider.GetRequiredService<SemesterRepository>());
+        services.AddScoped<IRepository<Season>>(provider => provider.GetRequiredService<SeasonRepository>());
         services.AddScoped<IUserRepository>(provider => provider.GetRequiredService<UserRepository>());
         services.AddScoped<IChurchRepository>(provider => provider.GetRequiredService<ChurchRepository>());
         services.AddScoped<ICountryRepository>(provider => provider.GetRequiredService<CountryRepository>());
         services.AddScoped<IRoleRepository>(provider => provider.GetRequiredService<RoleRepository>());
         services.AddScoped<IWeekSessionRepository>(provider => provider.GetRequiredService<WeekSessionRepository>());
         services.AddScoped<ILanguageRepository>(provider => provider.GetRequiredService<LanguageRepository>());
+        services.AddScoped<ISemesterRepository>(provider => provider.GetRequiredService<SemesterRepository>());
+        services.AddScoped<ISeasonRepository>(provider => provider.GetRequiredService<SeasonRepository>());
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IChurchService, ChurchService>();
         services.AddScoped<ICountryService, CountryService>();
         services.AddScoped<IWeekSessionService, WeekSessionService>();
         services.AddScoped<ILanguageService, LanguageService>();
+        services.AddScoped<ISemesterService, SemesterService>();
+        services.AddScoped<ISeasonService, SeasonService>();
 
         return services;
     }
