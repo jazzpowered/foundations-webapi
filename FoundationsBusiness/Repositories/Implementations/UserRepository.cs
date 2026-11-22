@@ -6,7 +6,7 @@ namespace FoundationsBusiness.Repositories.Implementations;
 internal class UserRepository(IDbConnectionFactory connectionFactory)
     : Repository<User>(
         connectionFactory,
-        "Users",
+        "dbo.Users",
         "Id",
         "ChurchId",
         "CountryId",

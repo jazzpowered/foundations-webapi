@@ -5,26 +5,26 @@ namespace WebAPI.Contracts.Churches;
 /// <summary>Payload for creating a church.</summary>
 public sealed record CreateChurchRequest
 {
-    [Required]
+    [Required, MaxLength(200)]
     public required string Name { get; init; }
 
     [Range(1, int.MaxValue)]
     public required int CountryId { get; init; }
 
-    [Required]
+    [Required, MaxLength(200)]
     public required string Area { get; init; }
 }
 
 /// <summary>Payload for replacing a church's editable fields.</summary>
 public sealed record UpdateChurchRequest
 {
-    [Required]
+    [Required, MaxLength(200)]
     public required string Name { get; init; }
 
     [Range(1, int.MaxValue)]
     public required int CountryId { get; init; }
 
-    [Required]
+    [Required, MaxLength(200)]
     public required string Area { get; init; }
 }
 

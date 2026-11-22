@@ -1,7 +1,7 @@
 SET XACT_ABORT ON;
 BEGIN TRANSACTION;
 
-IF EXISTS (SELECT 1 FROM dbo.WeekSession WITH (TABLOCKX, HOLDLOCK))
+IF EXISTS (SELECT 1 FROM dbo.WeekSessions WITH (TABLOCKX, HOLDLOCK))
     THROW 50000, 'WeekSession contains rows; assign a language to existing rows before migrating.', 1;
 
 CREATE TABLE dbo.Languages
@@ -10,10 +10,10 @@ CREATE TABLE dbo.Languages
     Name nvarchar(50) NOT NULL
 );
 
-EXEC sp_rename N'dbo.WeekSession.Session', N'Week', N'COLUMN';
+EXEC sp_rename N'dbo.WeekSessions.Session', N'Week', N'COLUMN';
 
-ALTER TABLE dbo.WeekSession ADD
+ALTER TABLE dbo.WeekSessions ADD
     LanguageId int NOT NULL
-        CONSTRAINT FK_WeekSession_Languages REFERENCES dbo.Languages (Id);
+        CONSTRAINT FK_WeekSessions_Languages REFERENCES dbo.Languages (Id);
 
 COMMIT TRANSACTION;

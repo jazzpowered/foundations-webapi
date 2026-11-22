@@ -14,20 +14,22 @@ public sealed record CreateUserRequest
     [Range(1, int.MaxValue)]
     public required int RoleId { get; init; }
 
-    [Required]
+    [Required, MaxLength(100)]
     public required string FirstName { get; init; }
 
-    [Required]
+    [Required, MaxLength(100)]
     public required string LastName { get; init; }
 
-    [Required, EmailAddress]
+    [Required, EmailAddress, MaxLength(320)]
     public required string Email { get; init; }
 
-    [Required]
+    [Required, MaxLength(50)]
     public required string Gender { get; init; }
 
+    [MaxLength(200)]
     public string Area { get; init; } = string.Empty;
 
+    [MaxLength(20)]
     public string ZipCode { get; init; } = string.Empty;
 }
 
@@ -43,20 +45,22 @@ public sealed record UpdateUserRequest
     [Range(1, int.MaxValue)]
     public required int RoleId { get; init; }
 
-    [Required]
+    [Required, MaxLength(100)]
     public required string FirstName { get; init; }
 
-    [Required]
+    [Required, MaxLength(100)]
     public required string LastName { get; init; }
 
-    [Required, EmailAddress]
+    [Required, EmailAddress, MaxLength(320)]
     public required string Email { get; init; }
 
-    [Required]
+    [Required, MaxLength(50)]
     public required string Gender { get; init; }
 
+    [MaxLength(200)]
     public string Area { get; init; } = string.Empty;
 
+    [MaxLength(20)]
     public string ZipCode { get; init; } = string.Empty;
 }
 
