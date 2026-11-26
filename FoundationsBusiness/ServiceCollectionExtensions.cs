@@ -25,6 +25,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<LanguageRepository>();
         services.AddScoped<SemesterRepository>();
         services.AddScoped<SeasonRepository>();
+        services.AddScoped<ParticipantTableRepository>();
         services.AddScoped<IRepository<User>>(provider => provider.GetRequiredService<UserRepository>());
         services.AddScoped<IRepository<Church>>(provider => provider.GetRequiredService<ChurchRepository>());
         services.AddScoped<IRepository<Country>>(provider => provider.GetRequiredService<CountryRepository>());
@@ -33,6 +34,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRepository<Language>>(provider => provider.GetRequiredService<LanguageRepository>());
         services.AddScoped<IRepository<Semester>>(provider => provider.GetRequiredService<SemesterRepository>());
         services.AddScoped<IRepository<Season>>(provider => provider.GetRequiredService<SeasonRepository>());
+        services.AddScoped<IRepository<ParticipantTable>>(provider => provider.GetRequiredService<ParticipantTableRepository>());
         services.AddScoped<IUserRepository>(provider => provider.GetRequiredService<UserRepository>());
         services.AddScoped<IChurchRepository>(provider => provider.GetRequiredService<ChurchRepository>());
         services.AddScoped<ICountryRepository>(provider => provider.GetRequiredService<CountryRepository>());
@@ -41,6 +43,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ILanguageRepository>(provider => provider.GetRequiredService<LanguageRepository>());
         services.AddScoped<ISemesterRepository>(provider => provider.GetRequiredService<SemesterRepository>());
         services.AddScoped<ISeasonRepository>(provider => provider.GetRequiredService<SeasonRepository>());
+        services.AddScoped<IParticipantTableRepository>(provider => provider.GetRequiredService<ParticipantTableRepository>());
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IChurchService, ChurchService>();
         services.AddScoped<ICountryService, CountryService>();
@@ -48,6 +51,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ILanguageService, LanguageService>();
         services.AddScoped<ISemesterService, SemesterService>();
         services.AddScoped<ISeasonService, SeasonService>();
+        services.AddScoped<IParticipantTableService, ParticipantTableService>();
 
         return services;
     }
